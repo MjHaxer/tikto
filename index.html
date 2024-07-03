@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carding Tiktok Coins</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+        
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            position: relative;
+        }
+        .title {
+            font-family: 'Nosifer', cursive;
+            font-size: 2.5em;
+            color: #e60000;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .coins {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .coin-option {
+            flex: 1 0 30%;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #555;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .coin-option img {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 10px;
+        }
+        .coin-option:hover {
+            background-color: #666;
+        }
+        .coin-option.selected {
+            border-color: #ffd700;
+        }
+        .coin-option input {
+            margin-top: 10px;
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+            text-align: center;
+            width: 80%;
+        }
+        .recharge-button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .recharge-button.active {
+            background-color: #ff0050;
+            color: #fff;
+        }
+        .recharge-button:hover {
+            background-color: #cc0040;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Carding Tiktok Coins</div>
+        <h1>Get Coins</h1>
+        <div class="coins">
+            <div class="coin-option" onclick="selectCoin(this, 70, 0.75)">
+                <img src="tiktok-coin.png" alt="TikTok Coin">
+                70 Coins - £0.75
+            </div>
+            <div class="coin-option" onclick="selectCoin(this, 350, 3.75)">
+                <img src="tiktok-coin.png" alt="TikTok Coin">
+                350 Coins - £3.75
+            </div>
+            <div class="coin-option" onclick="selectCoin(this, 700, 7.45)">
+                <img src="tiktok-coin.png" alt="TikTok Coin">
+                700 Coins - £7.45
+            </div>
+            <div class="coin-option" onclick="selectCoin(this, 1400, 14.85)">
+                <img src="tiktok-coin.png" alt="TikTok Coin">
+                1,400 Coins - £14.85
+            </div>
+            <div class="coin-option" onclick="selectCoin(this, 3500, 36.99)">
+                <img src="tiktok-coin.png" alt="TikTok Coin">
+                3,500 Coins - £36.99
+            </div>
+            <div class="coin-option" onclick="selectCoin(this, 7000, 74.29)">
+                <img src="tiktok-coin.png" alt="TikTok Coin">
+                7,000 Coins - £74.29
+            </div>
+            <div class="coin-option" onclick="selectCoin(this, 17500, 185.69)">
+                <img src="tiktok-coin.png" alt="TikTok Coin">
+                17,500 Coins - £185.69
+            </div>
+            <div class="coin-option" id="custom-amount" onclick="selectCustomAmount(this)">
+                <img src="tiktok-coin.png" alt="TikTok Coin">
+                Custom Amount
+                <input type="number" id="custom-amount-input" placeholder="8000 Coins Min" oninput="calculatePrice(this)">
+                <div id="custom-price"></div>
+            </div>
+        </div>
+        <button class="recharge-button" id="recharge-button" onclick="redirectToFindId()">Recharge</button>
+    </div>
+
+    <script>
+        function selectCoin(element, coins, price) {
+            const coinOptions = document.querySelectorAll('.coin-option');
+            coinOptions.forEach(option => {
+                option.classList.remove('selected');
+            });
+            element.classList.add('selected');
+
+            document.getElementById('custom-amount-input').disabled = true;
+
+            const rechargeButton = document.getElementById('recharge-button');
+            rechargeButton.classList.add('active');
+
+            rechargeButton.dataset.amount = coins;
+            rechargeButton.dataset.price = price;
+        }
+
+        function selectCustomAmount(element) {
+            const coinOptions = document.querySelectorAll('.coin-option');
+            coinOptions.forEach(option => {
+                option.classList.remove('selected');
+            });
+            element.classList.add('selected');
+
+            const customInput = document.getElementById('custom-amount-input');
+            customInput.disabled = false;
+            customInput.focus();
+
+            const rechargeButton = document.getElementById('recharge-button');
+            rechargeButton.classList.add('active');
+
+            delete rechargeButton.dataset.amount;
+            delete rechargeButton.dataset.price;
+        }
+
+        function calculatePrice(input) {
+            const amount = parseInt(input.value);
+            const minAmount = 8000;
+            const maxAmount = 250000;
+            const pricePer8000 = 5;
+
+            if (amount >= minAmount && amount <= maxAmount) {
+                const price = (amount / minAmount) * pricePer8000;
+                document.getElementById('custom-price').innerText = `£${price.toFixed(2)}`;
+
+                const rechargeButton = document.getElementById('recharge-button');
+                rechargeButton.dataset.amount = amount;
+                rechargeButton.dataset.price = price;
+            } else {
+                document.getElementById('custom-price').innerText = '';
+                const rechargeButton = document.getElementById('recharge-button');
+                delete rechargeButton.dataset.amount;
+                delete rechargeButton.dataset.price;
+            }
+        }
+
+        function redirectToFindId() {
+            const rechargeButton = document.getElementById('recharge-button');
+            const amount = rechargeButton.dataset.amount;
+            const price = rechargeButton.dataset.price;
+
+            if (amount && price) {
+                window.location.href = `findid.php?amount=${amount}&price=${price}`;
+            } else {
+                alert('Please select a valid coin amount.');
+            }
+        }
+    </script>
+</body>
+</html>
